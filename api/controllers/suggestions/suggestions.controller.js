@@ -1,10 +1,11 @@
 import Boom from "@hapi/boom";
 import Wreck from "@hapi/wreck"
 
-const protocol = "https://"
-const baseUrl = "lepsiesluzby.atlassian.net";
+const baseUrl = "https://lepsiesluzby.atlassian.net";
 const apiPath = "/rest/api/3";
-const apiUrl = protocol + baseUrl + apiPath;
+const apiUrl = baseUrl + apiPath;
+const sdApiPath = "/rest/servicedeskapi";
+const sdApiUrl = baseUrl + sdApiPath;
 // const baseUrl = "https://lepsiesluzby.atlassian.net/jira/rest/servicedeskapi/request";
 
 const jiraUser = process.env.JIRA_USER || "marek@brencic.sk";
@@ -18,9 +19,24 @@ const headers = {
 const fieldPrefix = "customfield_";
 
 const fields = {
-    category: fieldPrefix + 10038
+    category: fieldPrefix + 10038,
+    name: fieldPrefix + 10040,
+    phone: fieldPrefix + 10047,
+    email: fieldPrefix + 10042,
+    url: fieldPrefix + 10048
 }
 
+const sd = {
+    id: 4,
+    types: {
+        issue: 19,
+        idea: 20
+    }
+}
+const issueType = {
+    issue: "Bug",
+    idea: "New Feature"
+}
 export default {
     getSuggestions: async (request, h) => {
         try {
@@ -33,10 +49,35 @@ export default {
     },
     createSuggestions: async (request, h) => {
         try {
-            const newSuggestion = request.payload;
-            const { payload } = await Wreck.post(baseUrl, {
+            const createPayload = (data) => {
+                const newPayload = {
+                    fields: {
+                        project: {
+                            key: "SDM",
+                        },
+                        issuetype: {
+                            name: issueType[data.type],
+                        },
+                        summary: data.summary,
+                        description: data.description,
+                        components: [
+                            {
+                                name: "e-services",
+                            },
+                        ],
+                        [fields.email]: data.email.toLowerCase(),
+                        [fields.name]: data.name || "",
+                        [fields.phone]: data.phone || "",
+                        [fields.url]: data.url || "",
+                    },
+                }
+
+                return newPayload
+            }
+
+            const { payload } = await Wreck.post(`${sdApiUrl}/request`, {
                 headers,
-                payload: newSuggestion
+                payload: createPayload(request.payload)
             });
             return h.response(payload);
         } catch (error) {
