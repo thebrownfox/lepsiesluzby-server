@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.3",
+  "x-stoplight": {
+    "id": "mkw4vzq297vvc"
+  },
+  "info": {
+    "title": "LepsieSluzby.sk",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3100"
+    }
+  ],
+  "paths": {
+    "/suggestions": {
+      "get": {
+        "summary": "Get suggestions",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-suggestions"
+      },
+      "post": {
+        "summary": "Create suggestion",
+        "operationId": "post-suggestions",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

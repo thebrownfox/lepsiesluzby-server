@@ -1,0 +1,43 @@
+{
+	"name": "lepsiesluzby-server",
+	"version": "1.0.0",
+	"description": "",
+	"author": "",
+	"license": "ISC",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "nodemon --experimental-json-modules --inspect",
+		"start": "NODE_ENV=production node --experimental-json-modules ./index.js",
+		"lint": "eslint ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thefoxie/lepsiesluzby-server.git"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.18.5",
+		"@babel/eslint-parser": "^7.18.2",
+		"@babel/plugin-syntax-import-assertions": "^7.17.12",
+		"@hapi/eslint-config-hapi": "13.0.2",
+		"@hapi/eslint-plugin-hapi": "4.3.6",
+		"@types/hapi": "^18.0.7",
+		"babel-eslint": "10.1.0",
+		"eslint": "8.18.0",
+		"eslint-config-prettier": "^8.5.0",
+		"nodemon": "^2.0.18",
+		"prettier": "^2.7.1"
+	},
+	"dependencies": {
+		"@hapi/boom": "10.0.0",
+		"@hapi/hapi": "20.2.2",
+		"@hapi/wreck": "^18.0.0",
+		"consola": "^2.15.3",
+		"hapi-openapi": "^3.0.0",
+		"joi": "17.6.0"
+	},
+	"bugs": {
+		"url": "https://github.com/thefoxie/lepsiesluzby-server/issues"
+	},
+	"homepage": "https://github.com/thefoxie/lepsiesluzby-server#readme"
+}
