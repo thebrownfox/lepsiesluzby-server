@@ -47,7 +47,7 @@ export default {
             return Boom.boomify(error);
         }
     },
-    createSuggestions: async (request, h) => {
+    createSuggestion: async (request, h) => {
         try {
             const createPayload = (data) => {
                 const newPayload = {
