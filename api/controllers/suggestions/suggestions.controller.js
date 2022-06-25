@@ -8,7 +8,7 @@ const sdApiPath = "/rest/servicedeskapi";
 const sdApiUrl = baseUrl + sdApiPath;
 // const baseUrl = "https://lepsiesluzby.atlassian.net/jira/rest/servicedeskapi/request";
 
-const jiraUser = process.env.JIRA_USER || "marek@brencic.sk";
+const jiraUser = process.env.JIRA_USER;
 const jiraToken = process.env.JIRA_TOKEN;
 
 const token = Buffer.from(`${jiraUser}:${jiraToken}`).toString('base64')
