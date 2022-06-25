@@ -75,7 +75,7 @@ export default {
                 return newPayload
             }
 
-            const { payload } = await Wreck.post(`${sdApiUrl}/request`, {
+            const { payload } = await Wreck.post(`${apiUrl}/issue`, {
                 headers,
                 payload: createPayload(request.payload)
             });
